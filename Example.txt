@@ -1,0 +1,237 @@
+@startuml Vinyl Lending System
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Core Package
+package "client.core" {
+    class ViewHandler {
+        - stage: Stage
+        - vmf: ViewModelFactory
+        + start()
+        + openLoginWindow()
+        + openSignUpWindow()
+        + openVinylWindow()
+    }
+
+    class ViewModelFactory {
+        - modelFactory: ModelFactory
+        - userLoginViewModel: UserLoginViewModel
+        - signUpViewModel: SignUpViewModel
+        - vinylWindowViewModel: VinylWindowViewModel
+        + getUserLoginViewModel(): UserLoginViewModel
+        + getSignUpViewModel(): SignUpViewModel
+        + getVinylWindowViewModel(): VinylWindowViewModel
+    }
+
+    class ModelFactory {
+        - clientFactory: ClientFactory
+        - vinylModel: ClientVinylModel
+        + getVinylModel(): ClientVinylModel
+    }
+
+    class ClientFactory {
+        - client: Client
+        + getClient(): Client
+    }
+}
+
+' View Package
+package "client.clientView" {
+    interface ViewController {
+        + init(ViewHandler, ViewModelFactory)
+    }
+
+    class UserLoginController {
+        - errorLabel: Label
+        - loginPasswordField: PasswordField
+        - loginUsernameField: TextField
+        - viewHandler: ViewHandler
+        - userLoginViewModel: UserLoginViewModel
+        + onLoginButton()
+        + onSignUpButton()
+    }
+
+    class SignUpController {
+        - errorLabel: Label
+        - signUpPasswordField: PasswordField
+        - signUpUsernameField: TextField
+        - viewHandler: ViewHandler
+        - signUpViewModel: SignUpViewModel
+        + onSignUpButton()
+        + onGoToLoginButton()
+    }
+
+    class VinylWindowController {
+        - allVinylsListView: ListView<Vinyl>
+        - myVinylsListView: ListView<Vinyl>
+        - borrowedVinylsListView: ListView<Vinyl>
+        - availableVinylsListView: ListView<Vinyl>
+        - titleField: TextField
+        - artistField: TextField
+        - usernameLabel: Label
+        - vinylWindowViewModel: VinylWindowViewModel
+        + onAddVinylButton()
+        + onBorrowButton()
+        + onReturnButton()
+        + onLogoutButton()
+    }
+}
+
+' ViewModel Package
+package "client.clientViewModel" {
+    class UserLoginViewModel {
+        - model: ClientVinylModel
+        - username: StringProperty
+        - password: StringProperty
+        - error: StringProperty
+        + login(): Boolean
+        + setErrorLabel()
+    }
+
+    class SignUpViewModel {
+        - model: ClientVinylModel
+        - signUpUsername: StringProperty
+        - signUpPassword: StringProperty
+        - error: StringProperty
+        + checkUser()
+    }
+
+    class VinylWindowViewModel {
+        - model: ClientVinylModel
+        - allVinyls: ObservableList<Vinyl>
+        - myVinyls: ObservableList<Vinyl>
+        - borrowedVinyls: ObservableList<Vinyl>
+        - availableVinyls: ObservableList<Vinyl>
+        - userName: StringProperty
+        + addVinyl(String title, String artist)
+        + borrowVinyl(Vinyl vinyl)
+        + returnVinyl(Vinyl vinyl)
+    }
+}
+
+' Model Package
+package "client.clientModel" {
+    interface ClientVinylModel {
+        + login(String username, String password): boolean
+        + signUp(String username, String password): boolean
+        + addVinyl(String title, String artist)
+        + borrowVinyl(Vinyl vinyl)
+        + returnVinyl(Vinyl vinyl)
+        + getAllVinyls(): List<Vinyl>
+        + getMyVinyls(): List<Vinyl>
+        + getBorrowedVinyls(): List<Vinyl>
+        + getAvailableVinyls(): List<Vinyl>
+    }
+
+    class ClientModelManager {
+        - client: Client
+        - currentUser: String
+        + addPropertyChangeListener(String name, PropertyChangeListener listener)
+    }
+}
+
+' Network Package
+package "client.clientNetwork" {
+    interface Client {
+        + login(String username, String password): boolean
+        + signUp(String username, String password): boolean
+        + addVinyl(String title, String artist)
+        + borrowVinyl(Vinyl vinyl)
+        + returnVinyl(Vinyl vinyl)
+        + getAllVinyls(): List<Vinyl>
+        + startClient()
+    }
+
+    class SocketClient {
+        - socket: Socket
+        - out: ObjectOutputStream
+        - in: ObjectInputStream
+        - host: String
+        - port: int
+        + connect()
+        + disconnect()
+    }
+}
+
+' Server Model Package
+package "server.serverModel" {
+    interface ServerVinylModel {
+        + login(String username, String password): boolean
+        + signUp(String username, String password): boolean
+        + addVinyl(String title, String artist, String owner)
+        + borrowVinyl(Vinyl vinyl, String borrower)
+        + returnVinyl(Vinyl vinyl)
+        + getAllVinyls(): List<Vinyl>
+    }
+
+    class ServerModelManager {
+        - users: Map<String, String>
+        - vinyls: List<Vinyl>
+        + addPropertyChangeListener(String name, PropertyChangeListener listener)
+    }
+}
+
+' Server Network Package
+package "server.serverNetwork" {
+    class SocketServer {
+        - serverSocket: ServerSocket
+        - model: ServerVinylModel
+        - port: int
+        + startServer()
+        + closeServer()
+    }
+
+    class ServerSocketHandler {
+        - socket: Socket
+        - out: ObjectOutputStream
+        - in: ObjectInputStream
+        - model: ServerVinylModel
+        + run()
+    }
+}
+
+' Shared Package
+package "shared" {
+    class Vinyl {
+        - title: String
+        - artist: String
+        - owner: String
+        - borrower: String
+        - isAvailable: boolean
+        + getTitle(): String
+        + getArtist(): String
+        + getOwner(): String
+        + getBorrower(): String
+        + isAvailable(): boolean
+        + setBorrower(String borrower)
+        + setAvailable(boolean available)
+    }
+}
+
+' Relationships
+ViewHandler --> ViewModelFactory
+ViewModelFactory --> ModelFactory
+ModelFactory --> ClientFactory
+ViewController <|.. UserLoginController
+ViewController <|.. SignUpController
+ViewController <|.. VinylWindowController
+UserLoginController --> UserLoginViewModel
+SignUpController --> SignUpViewModel
+VinylWindowController --> VinylWindowViewModel
+UserLoginViewModel --> ClientVinylModel
+SignUpViewModel --> ClientVinylModel
+VinylWindowViewModel --> ClientVinylModel
+ClientVinylModel <|.. ClientModelManager
+Client <|.. SocketClient
+ClientModelManager --> Client
+ServerVinylModel <|.. ServerModelManager
+SocketServer --> ServerSocketHandler
+ServerSocketHandler --> ServerVinylModel
+ClientModelManager ..> Vinyl
+ServerModelManager ..> Vinyl
+
+@enduml

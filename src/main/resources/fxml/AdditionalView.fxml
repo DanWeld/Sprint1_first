@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="summerhouse.booking.client.view.AdditionalViewController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <TabPane VBox.vgrow="ALWAYS">
+        <Tab text="Customer View" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="propertyTable">
+                    <columns>
+                        <TableColumn text="Name" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="name"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Address" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="address"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Capacity" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="capacity"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Add Booking" onAction="#onAddBooking"/>
+                    <Button text="Cancel Booking" onAction="#onCancelBooking"/>
+                </HBox>
+            </VBox>
+        </Tab>
+        <Tab text="Admin View" closable="false">
+            <TableView fx:id="bookingTable">
+                <columns>
+                    <TableColumn text="Property" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="propertyName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Status" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="status"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </Tab>
+    </TabPane>
+</VBox> 

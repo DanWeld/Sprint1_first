@@ -1,0 +1,51 @@
+Book a Property 
+Scenarios: 
+ 
+Scenario 1: Successful Booking  
+Given: The customer has selected a property from the list. 
+When: The customer proceeds with the booking and the property is available for the selected dates. 
+Then: The system allows the customer to proceed with payment and confirms the booking. 
+ 
+ 
+Scenario 2: Property Not Available  
+Given: The customer has selected a property from the list. 
+When: The customer selects a new end date, but the property is not available. 
+Then: The system displays the message: "Property is not available for the new date, please select a different date." 
+ 
+ 
+Scenario 3: Change of End Date  
+Given: The customer has already selected a property and wants to modify the booking. 
+When: The customer changes the end date. 
+Then: The system checks availability and either allows the change or notifies the user that the new date is unavailable. 
+ 
+ 
+Scenario 4: Payment Process  
+Given: The customer has successfully selected a property and dates. 
+When: The customer proceeds to payment. 
+Then: The system processes the payment and confirms the booking. 
+ 
+ 
+Scenario 5: Error Handling 
+Given: The customer selects a property but does not specify dates correctly. 
+When: The customer tries to proceed. 
+Then: The system prompts the user to enter valid start and end dates before continuing. 
+ 
+Test Cases: 
+Test Case scenarios  	Test Case Description 	Precondition 	Test Steps 	Expected Result 	Actual result 
+1 	Select and book an available property 	The customer has a list of properties 	1. Select a property 
+2. Verify availability 
+3. Proceed to payment 	The system confirms the booking 	 
+2 	Select a property and change the end date 	The customer has already selected a property 	1. Modify the end date 
+2. Check availability 	If available, system allows change; otherwise, an error message is shown 	 
+3 	Attempt to book a property with unavailable dates 	The property is already booked on selected dates	 	1. Select a property 
+2. Choose unavailable dates 
+3. Try to proceed 	System displays "Property not available for selected dates" 	 
+4 	Proceeding without selecting dates 	No dates selected by the customer 	1. Select a property 
+2. Try to proceed without entering dates 	System prompts the user to enter dates 	 
+5 	Successful payment process 	A property is available for the selected dates 	1. Select a property 
+2. Enter valid dates 
+3. Proceed to payment 	System processes payment and confirms booking 	 
+6 	System error handling 	Unexpected system failure 	1. Simulate system crash or failure during booking 	System should handle the error and display an appropriate message 	 
+ 
+ 
+

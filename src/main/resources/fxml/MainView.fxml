@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="summerhouse.booking.client.view.MainViewController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Refresh" onAction="#onRefresh"/>
+    </HBox>
+
+    <TabPane VBox.vgrow="ALWAYS">
+        <Tab text="Summerhouses" closable="false">
+            <TableView fx:id="summerhouseTable">
+                <columns>
+                    <TableColumn text="Name" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Address" prefWidth="200">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="address"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Capacity" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="capacity"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Price/Night" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="pricePerNight"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </Tab>
+        <Tab text="My Bookings" closable="false">
+            <TableView fx:id="bookingTable">
+                <columns>
+                    <TableColumn text="Property" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="propertyName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Start Date" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="startDate"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="End Date" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="endDate"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Guests" prefWidth="80">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="numberOfGuests"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Total Price" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="totalPrice"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Status" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="status"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </Tab>
+        <Tab text="Customers" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="customerTable">
+                    <columns>
+                        <TableColumn text="Name" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="name"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Booking Status" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="bookingStatus"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Payment Status" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="paymentStatus"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="View Details" onAction="#onViewDetails"/>
+                    <Button text="Mark as Paid" onAction="#onMarkAsPaid"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox> 

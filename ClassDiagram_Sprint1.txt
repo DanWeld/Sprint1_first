@@ -1,0 +1,186 @@
+@startuml Sprint1 System
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Core Package
+package "client.core" {
+    class ViewHandler {
+        - stage: Stage
+        - vmf: ViewModelFactory
+        + start()
+        + openBookingWindow()
+        + openPaymentWindow()
+    }
+
+    class ViewModelFactory {
+        - modelFactory: ModelFactory
+        - bookingViewModel: BookingViewModel
+        - paymentViewModel: PaymentViewModel
+        + getBookingViewModel(): BookingViewModel
+        + getPaymentViewModel(): PaymentViewModel
+    }
+
+    class ModelFactory {
+        - clientFactory: ClientFactory
+        - bookingModel: ClientBookingModel
+        + getBookingModel(): ClientBookingModel
+    }
+
+    class ClientFactory {
+        - client: Client
+        + getClient(): Client
+    }
+}
+
+' View Package
+package "client.clientView" {
+    interface ViewController {
+        + init(ViewHandler, ViewModelFactory)
+    }
+
+    class BookingController {
+        - bookingDetails: TextField
+        - viewHandler: ViewHandler
+        - bookingViewModel: BookingViewModel
+        + onBookButton()
+        + onCancelButton()
+    }
+
+    class PaymentController {
+        - paymentDetails: TextField
+        - viewHandler: ViewHandler
+        - paymentViewModel: PaymentViewModel
+        + onPayButton()
+        + onCancelButton()
+    }
+}
+
+' ViewModel Package
+package "client.clientViewModel" {
+    class BookingViewModel {
+        - model: ClientBookingModel
+        - bookingDetails: StringProperty
+        + bookProperty()
+        + cancelBooking()
+    }
+
+    class PaymentViewModel {
+        - model: ClientBookingModel
+        - paymentDetails: StringProperty
+        + processPayment()
+    }
+}
+
+' Model Package
+package "client.clientModel" {
+    interface ClientBookingModel {
+        + bookProperty(String details): boolean
+        + cancelBooking(String details): boolean
+        + processPayment(String details): boolean
+    }
+
+    class ClientModelManager {
+        - client: Client
+        - currentUser: String
+        + addPropertyChangeListener(String name, PropertyChangeListener listener)
+    }
+}
+
+' Network Package
+package "client.clientNetwork" {
+    interface Client {
+        + bookProperty(String details): boolean
+        + cancelBooking(String details): boolean
+        + processPayment(String details): boolean
+        + startClient()
+    }
+
+    class SocketClient {
+        - socket: Socket
+        - out: ObjectOutputStream
+        - in: ObjectInputStream
+        - host: String
+        - port: int
+        + connect()
+        + disconnect()
+    }
+}
+
+' Server Model Package
+package "server.serverModel" {
+    interface ServerBookingModel {
+        + bookProperty(String details): boolean
+        + cancelBooking(String details): boolean
+        + processPayment(String details): boolean
+    }
+
+    class ServerModelManager {
+        - bookings: List<Booking>
+        + addPropertyChangeListener(String name, PropertyChangeListener listener)
+    }
+}
+
+' Server Network Package
+package "server.serverNetwork" {
+    class SocketServer {
+        - serverSocket: ServerSocket
+        - model: ServerBookingModel
+        - port: int
+        + startServer()
+        + closeServer()
+    }
+
+    class ServerSocketHandler {
+        - socket: Socket
+        - out: ObjectOutputStream
+        - in: ObjectInputStream
+        - model: ServerBookingModel
+        + run()
+    }
+}
+
+' Shared Package
+package "shared" {
+    class Booking {
+        - property: String
+        - user: String
+        - startDate: Date
+        - endDate: Date
+        + getProperty(): String
+        + getUser(): String
+        + getStartDate(): Date
+        + getEndDate(): Date
+    }
+
+    class Payment {
+        - booking: Booking
+        - amount: double
+        + getBooking(): Booking
+        + getAmount(): double
+    }
+}
+
+' Relationships
+ViewHandler --> ViewModelFactory
+ViewModelFactory --> ModelFactory
+ModelFactory --> ClientFactory
+ViewController <|.. BookingController
+ViewController <|.. PaymentController
+BookingController --> BookingViewModel
+PaymentController --> PaymentViewModel
+BookingViewModel --> ClientBookingModel
+PaymentViewModel --> ClientBookingModel
+ClientBookingModel <|.. ClientModelManager
+Client <|.. SocketClient
+ClientModelManager --> Client
+ServerBookingModel <|.. ServerModelManager
+SocketServer --> ServerSocketHandler
+ServerSocketHandler --> ServerBookingModel
+ClientModelManager ..> Booking
+ServerModelManager ..> Booking
+
+@enduml

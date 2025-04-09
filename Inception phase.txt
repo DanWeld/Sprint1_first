@@ -1,0 +1,141 @@
+Functional Requirements:  
+ 
+1.	As a user, I want to create an account and log in with username/ email and password, so that I can securely access my profile and complete a booking.  
+2.	As an admin, I want to register and log in/ sign up with administrative credentials, so that I can manage properties, bookings, and user activities. 
+3.	As an admin, I want to add new properties with details: facilities, price and location, so that users can access comprehensive property information. 
+4.	As a user, I want to search for properties by selecting desired start and end date, so that I can find accommodations matching my travel plans. 
+5.	As a user, I want to select a property and proceed with booking, so that I can reserve my preferred accommodation. 
+6.	As a user, I want to securely pay for my booking after selecting a property, so that I can confirm my reservation. 
+7.	As a user, I want to filter property listings based on location, price, and facility’s availability (internet, swimming pool, kitchen, laundry, and dishwasher), so that I can quickly identify properties that meet my preferences. 
+8.	As a user, I want to view a list of my past, present, and future bookings, so that I can track my reservation history and manage upcoming stays.  
+9.	As a user, I want to cancel my booking at least 7 days before the start date, so that I can change or adapt if my plan has been changed, or some changes occurred. 
+10.	As a user, I want to modify my booking dates before confirming the reservation, if the property is available so that I can adjust my stay according to changes in my travel plans.  
+11.	As an admin, I want to update or remove properties only if they are not booked, to ensure accurate listings and prevent false advertisements. 
+12.	As an admin, I want to specify property’s amenities, including internet, swimming pool, kitchen, laundry, and dishwasher, so that users have a clear understanding of available amenities.  
+13.	As a user, I want to extend my booking if the property is available, so that I can prolong my stay without needing to create a new reservation. 
+14.	As an admin, I want to view a list of all properties, so that I can review property details and ensure the accuracy of listings. 
+15.	As an admin, I want to view or access the past list of booking history for each property, so that I can monitor reservations and manage property availability. 
+16.	As an admin, I want to see a list of all bookings across properties, so that I can identify trends and address potential issues.  
+17.	As a user, I want to be able delete past bookings from my history, so that I can remove not needed records from my account. 
+18.	As a user I want to be able to update my profile information (username, email and password), so that I have a profile that matches my information. 
+19.	As a user I want to be able to reset my password if I forgot it and have a new login code sent on my email, so I can always have access to my account. 
+ 
+ 
+Non-Functional requirements: - 
+20.	The system should be able to handle multiple simultaneous user searches and bookings. 
+21.	A customer receives notification once the payment is processed or if a cancellation is confirmed. 
+22.	All user data, including booking history, should be securely stored in a database. 
+23.	User passwords should be encrypted for security. 
+24.	The system should have a user-friendly interface for easy navigation. 
+25.	The system should allow easy integration of new features. 
+ 
+ 
+ 
+ 
+Product Backlog: 
+ 
+ID 	User Story 	Priority 	Acceptance Criteria 
+1 	As a user, I want to create an account and log in with username/ email and password, so that I can securely access my profile and complete a booking.  
+ 	Must-Have 
+ 	- Users can register using email, username, and password. 
+- Passwords are stored securely using encryption. 
+- Users can log in securely with valid credentials. 
+ 
+2 	As an admin, I want to register and log in/ sign up with administrative credentials, so that I can manage properties, bookings, and user activities. 
+ 	Must-Have 
+ 	- Admins can create accounts with administrative access. 
+- Admins have a dedicated dashboard with role-based permissions. 
+ 
+3 	As an admin, I want to add new properties with details: facilities, price and location, so that users can access comprehensive property information. 
+ 	Must-Have 
+ 	- Admins can add properties with descriptions, and amenities. 
+- The system validates that all required fields are entered. 
+- Properties appear in the public listing upon successful addition. 
+ 
+4 	As a user, I want to search for properties by selecting desired start and end date, so that I can find accommodations matching my travel plans. 
+ 	Must Have 	- Users can enter check-in and check-out dates. 
+- Search results display available properties for the selected dates. 
+- Users can view detailed property descriptions in search results. 
+ 
+5 	As a user, I want to select a property and proceed with booking, so that I can reserve my preferred accommodation. 
+ 	Must-Have 
+ 	- Users can view property details before booking. 
+- Users enter guest details and confirm reservation. 
+- System prevents double booking for the same property and dates. 
+ 
+6 	As a user, I want to securely pay for my booking after selecting a property, so that I can confirm my reservation. 
+ 	Must-Have 
+ 	- Users enter payment details securely. 
+- Payment is processed via a secure gateway. 
+- Booking confirmation is sent upon successful payment. 
+ 
+ 
+ 
+7 	As a user, I want to filter property listings based on location, price, and facility’s availability (internet, swimming pool, kitchen, laundry, and dishwasher), so that I can quickly identify properties that meet my preferences. 
+ 	High 	- Users can apply filters such as location, price range, and amenities. 
+- Search results update dynamically based on filter selection. 
+ 
+8 	As a user, I want to view a list of my past, present, and future bookings, so that I can track my reservation history and manage upcoming stays.  
+ 	High 
+ 	- Users can access booking history via their account dashboard. 
+- Booking details include dates, property name, and payment. 
+ 
+9 	As a user, I want to cancel my booking at least 7 days before the start date, so that I can change or adapt if my plan has been changed, or some changes occurred. 
+ 	High 
+ 	- Users can cancel bookings if they meet the cancellation policy. 
+ 
+10 	As a user, I want to modify my booking dates before confirming the reservation, if the property is available so that I can adjust my stay according to changes in my travel plans.  
+ 	High 
+ 	- Users can edit check-in/check-out dates before payment. 
+- System checks availability before allowing changes. 
+ 
+11 	As an admin, I want to update or remove properties only if they are not booked, to ensure accurate listings and prevent false advertisements. 
+ 	Must-Have 	 
+ 	- Admins can edit property details if no active bookings exist. 
+- System prevents property deletion if future reservations exist. 
+- Error messages are displayed when deletion is restricted. 
+ 
+12 	As an admin, I want to specify property’s amenities, including internet, swimming pool, kitchen, laundry, and dishwasher, so that users have a clear understanding of available amenities.  
+ 	High 	- Admins can select and edit amenities for each property. 
+- Amenities are visible on property listings for user reference. 
+ 
+13 	As a user, I want to extend my booking if the property is available, so that I can prolong my stay without needing to create a new reservation. 
+ 	Medium 
+ 	- Users can request an extension for their booking. 
+- System checks availability and confirms the extension. 
+ 
+14 	As an admin, I want to view a list of all properties, so that I can review property details and ensure the accuracy of listings. 
+ 	Medium 
+ 	- Admins can see all listed properties, including booked and available ones. 
+- Property details can be reviewed and updated if needed. 
+ 
+ 
+ 
+15 	As an admin, I want to view or access the past list of booking history for each property, so that I can monitor reservations and manage property availability. 
+ 	Medium 	- Admins can filter and view past, present, and future bookings. 
+- Booking history includes user details, stay duration, and status. 
+ 
+16 	As an admin, I want to see a list of all bookings across properties, so that I can identify trends and address potential issues.  
+ 	Medium 	 	- Admins can access reports on total bookings. 
+ 
+ 
+17 	As a user, I want to be able delete past bookings from my history, so that I can remove not needed records from my account. 
+ 	Low 
+ 	- Users can remove completed bookings from their booking history. 
+- Deleted records are not recoverable. 
+ 
+18 	As a user I want to be able to update my profile information (username, email and password), so that I have a profile that matches my information. 
+ 	High 
+ 	- Users can edit and update profile information. 
+- System notifies users via notification in the system of profile updates. 
+ 
+19 	As a user I want to be able to reset my password if I forgot it and have a new login code sent on my email. 
+ 	High 
+ 	- Users can request a password reset via email. 
+- A secure one-time code is sent to their registered email. 
+- Users can set a new password following security guidelines. 
+ 
+ 
+ 
+ 
+

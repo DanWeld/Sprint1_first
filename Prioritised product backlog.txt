@@ -1,0 +1,39 @@
+ 
+ID 	User Story 	Acceptance Criteria 	Priority 	Estimated Hours 
+1 	As a user, I want to select a property and proceed with booking, so that I can reserve my preferred accommodation. 
+ 	- Users can view property details before booking. 
+- User can filter the dates and proceed for reservation. 
+- System prevents double booking for the same property and dates. 
+- Users make payment and confirms the booking. 
+ 	Must - Have 	 
+2 	As a user, I want to modify my booking dates before confirming the reservation, if the property is available so that I can adjust my stay according to changes in my travel plans.  
+ 	- Users can edit check-in/check-out dates before payment. 
+- System checks availability before allowing changes. 
+ 	 	 
+3 	As a user, I want to extend my booking if the property is available, so that I can prolong my stay without needing to create a new reservation. 
+ 	- Users can request an extension for their booking. 
+- System checks availability and confirms the extension. 
+ 	 	 
+4 	As a user, I want to filter property listings based on location, price, and facility’s availability (internet, swimming pool, kitchen, laundry, and dishwasher), so that I can quickly identify properties that meet my preferences. 
+ 	 	 	 
+5 	As a user, I want to cancel my booking at least 7 days before the start date, so that I can change or adapt if my plan has been changed, or some changes occurred. 
+ 	 	 	 
+6 	As an admin, I want to add new properties with details: facilities, price and location, so that users can access comprehensive property information. 
+ 	 	 	 
+7 	As an admin, I want to specify property’s amenities, including internet, swimming pool, kitchen, laundry, and dishwasher, so that users have a clear understanding of available amenities.  
+ 	 	 	 
+8 	 	 	 	 
+9 	 	 	 	 
+10 	 	 	 	 
+11 	 	 	 	 
+12 	 	 	 	 
+13 	 	 	 	 
+14 	 	 	 	 
+15 	 	 	 	 
+16 	 	 	 	 
+17 	 	 	 	 
+18 	 	 	 	 
+19 	 	 	 	 
+20 	 	 	 	 
+ 
+

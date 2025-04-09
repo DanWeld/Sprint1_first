@@ -1,0 +1,19 @@
+Business Model for Property Selection & Booking 
+Use case story: - 
+As a user, I want to select a property and proceed with booking, so that I can reserve my preferred accommodation. 
+ 
+1. Problem Statement 
+Users need an easy and efficient way to browse, select, and book properties to secure their preferred accommodation. 
+2. Solution 
+A platform that allows users to: 
+•	Search and filter properties. 
+•	View property details and availability. 
+•	Proceed with booking and secure the accommodation. 
+3. Business Process Flow 
+1.	User Browses Properties – Searches for available accommodations. 
+2.	User Selects a Property – Reviews details, pricing, and availability. 
+//Since we are only working until book button only for this sprint so its only up to number 2 
+3.	User Proceeds with Booking – Enters details and makes payment. 
+4.	System Confirms Reservation – Sends confirmation and booking details. 
+ 
+
